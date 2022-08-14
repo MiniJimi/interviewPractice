@@ -1,0 +1,26 @@
+#Merge two sorted lists
+
+#Description
+#We have two sorted list in ascending order
+#Merge the two lists into one sorted list.
+#This list is made by splicing the two list together
+#return the head of the head of the merged linked list
+
+#soln
+class Solution:
+    def mergeTwoLists(self, list1, list2):
+        
+        #if list 1 or 2 is empty, return other list
+        if list1 is None:
+            return list2
+        elif list2 is None:
+            return list1
+        
+        #if list1 value is less than list2 value, therefore merge to list1
+        elif list1.val < list2.val:
+            list1.next = self.mergeTwoLists(list1.next, list2)
+            return list1
+         #if list2 value is less than list1 value, therefore merge to list2       
+        else:
+            list2.next = self.mergeTwoLists(list1, list2.next)
+            return list2
