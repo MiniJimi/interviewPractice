@@ -1,0 +1,36 @@
+#forLoopEvenOdd
+#source: HackerRank
+
+#Description
+#You will be given two positive integers,  a<=b, separated by a newline.
+#create array for string words realting to position of num
+# 1<=a <=9 then print the English representation of it in lowercase. That is "one" for 1 , "two" for 2, and so on.
+# if >9  and it is an even number, then print "even", else odd.
+
+#soln
+
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main() {
+    int m, n ;
+    cin >> m >> n ; //a <= b
+       
+    //create array for string words realting to position of num
+    string num[9] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    // a <= b therefore range is [m:n]
+    for (int i = m; i <= n; i++) {
+        if (i >= 1 && i<=9){
+            cout << num[i-1] <<endl;       //i-1 bc if 3, num[3] = "four". zero base 
+         }
+        else if (i > 9){
+            if (i % 2 == 0){
+                cout << "even" << endl;
+            }
+            else
+            cout << "odd" << endl;
+        }
+    };
+    return 0;  
+    }
