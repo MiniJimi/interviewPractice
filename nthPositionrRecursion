@@ -1,0 +1,43 @@
+#nthPosition Remapped Recursion
+#source: other
+
+# Description
+# s1=0, s2=s1+remap(s1), s3=s2 +remap(s2)
+# where remap(Sx) = 0 == 1, 1==2, 2==0
+# return kTh digit in the sequence
+# e.g. if cin = 3, therefore s3 = s1+s2+s3 = 0 + 01 + 0112 = 0010112
+# return 1
+# we return 1 because 00_0112. cin=1, return third index positon, therefore 1
+
+#soln
+
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+int main() {
+    string line;
+    while (getline(cin, line)) {
+        int n_num;
+        stringstream(line) >> n_num;    //convert cin val to int, STOI didn't work
+        int m = n_num;         //save original input val into memory m
+
+        string f = "0";  //first element in the seq is always 0
+        string temp;
+
+        while (n_num--) {
+            temp = f;
+            for (char& c : temp) {  //take an entire copy of the first seq, remap 0->1, 1->2, 2->0
+                if (c == '0') c = '1';
+                else if (c == '1') c = '2';
+                else if (c == '2') c = '0';
+                else c = '0';
+            }
+            f = f + temp;  // concat new remapped vals onto old vals
+        }
+        line = f[m - 1];  // since n decrements, we save m as the orginal input
+        cout << line << endl;
+    }
+    return 0;
+}
