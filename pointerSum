@@ -1,0 +1,35 @@
+#pointerSum
+#source: HackerRank
+
+#Description
+#int *a: an integer
+#int *b: an integer
+#modify vals so that a contains the sum of a+b
+#and b contains their absolute difference
+
+#soln
+
+#include <stdio.h>
+
+       // &val returns mem address of val
+       // int*p = &val assigns memory address of val to to pointer p   
+       // * in *p allows access to content of the memory 
+       // *p = value store in val
+
+void update(int *a,int *b) {        //two pointers which access the val of an address
+    int sum = *a + *b;
+    int abs = (*a <= *b)? (*b-*a): (*a - *b);   //Is ptr check, do this, else do that
+    *a = sum;                                   // return ptr a when sum
+    *b = abs;                                   // return ptr b when abs
+    }       
+
+int main() {                        // void return type, no value to return
+    int a, b;                       // int a contains sum, b=contains the abs diff
+    int *pa = &a, *pb = &b;
+    
+    scanf("%d %d", &a, &b);
+    update(pa, pb);
+    printf("%d\n%d", a, b);
+
+    return 0;
+}
